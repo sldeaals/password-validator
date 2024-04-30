@@ -54,7 +54,7 @@ To run the app locally, you can use npm or yarn:
 ```bash
 npm start
 ```
-# or
+#### or
 ```bash
 yarn start
 ```
@@ -67,7 +67,7 @@ To run tests for the Password Validator component, you can use npm or yarn:
 ```bash
 npm test
 ```
-# or
+#### or
 ```bash
 yarn test
 ```
