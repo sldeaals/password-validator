@@ -1,11 +1,8 @@
 # Password Validator
 
-![TypeScript](https://img.shields.io/badge/-TypeScript-blue?style=flat-square&logo=typescript)
-![ReactJS](https://img.shields.io/badge/-ReactJS-blue?style=flat-square&logo=react)
-
 <div align="center">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/-ReactJS-blue?style=flat-square&logo=react" alt="ReactJS">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="ReactJS">
 </div>
 
 ## Overview
@@ -34,6 +31,7 @@ yarn add @your-package/password-validator-input
 ```
 
 ## Usage
+
 To use the Password Validator component in your ReactJS application, simply import it and include it in your JSX:
 ```bash
 import React from 'react';
@@ -51,6 +49,7 @@ export default App;
 ```
 
 ## Running the app
+
 To run the app locally, you can use npm or yarn:
 ```bash
 npm start
@@ -63,6 +62,7 @@ yarn start
 This will start the development server and open the app in your default browser.
 
 ## Test
+
 To run tests for the Password Validator component, you can use npm or yarn:
 ```bash
 npm test
