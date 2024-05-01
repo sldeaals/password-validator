@@ -3,11 +3,10 @@ import "./styles.scss";
 
 interface BasicTextFieldProps {
   label: string;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
   type?: string;
   placeholder?: string;
   variant?: "outlined" | "standard";
+  onChange?: (value: string) => void;
 }
 
 const BasicTextField: React.FC<BasicTextFieldProps> = ({
@@ -15,13 +14,16 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   type = "text",
   placeholder = "",
   variant = "standard",
-  startIcon,
-  endIcon,
+  onChange,
 }) => {
   const [value, setValue] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   const handleFocus = () => {
@@ -40,7 +42,6 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
 
   return (
     <label className={`input`}>
-      {startIcon && <div className="icon">{startIcon}</div>}
       <input
         className={`input__field ${variant}`}
         type={type}
@@ -51,7 +52,6 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
         placeholder={placeholder}
       />
       <span className={`input__label ${value ? "focused" : ""}`}>{label}</span>
-      {endIcon && <div className="icon">{endIcon}</div>}
     </label>
   );
 };
