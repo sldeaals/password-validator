@@ -1,13 +1,19 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BasicTextField } from "./components";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <p>Password Validator Input</p>
+      </header>
+      <div className="App-body">
+        <div className="App-body-input">
+          <BasicTextField label="Basic Input Field" />
+        </div>
+      </div>
+      <footer className="App-footer">
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -16,7 +22,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </footer>
     </div>
   );
 }
