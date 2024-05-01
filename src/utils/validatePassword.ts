@@ -1,18 +1,9 @@
-interface Rules {
-  length: number;
-  isUpperCase?: boolean;
-  isLowerCase?: boolean;
-  hasNumber?: boolean;
-  hasSymbol?: boolean;
-}
+import { PasswordRules, ValidPassword } from "../types";
 
-interface ValidPassword {
-  valid: boolean;
-  password: string;
-  message: string;
-}
-
-const validatePassword = (text: string, rules: Rules): ValidPassword => {
+const validatePassword = (
+  text: string,
+  rules: PasswordRules,
+): ValidPassword => {
   const { length = 32, isUpperCase, isLowerCase, hasNumber, hasSymbol } = rules;
 
   const regexUpperCase = /[A-Z]/g;
