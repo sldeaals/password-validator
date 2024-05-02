@@ -28,7 +28,7 @@
     white-space: nowrap;
     transform: translate(0, 0);
     transform-origin: 0 0;
-    background: var(--color-background);
+    background: transparent;
     transition: transform 120ms ease-in;
     line-height: 1.2;
     text-transform: capitalize;
@@ -48,6 +48,7 @@
     &:focus,
     &:not(:placeholder-shown) {
       & + .input__label {
+        background: var(--color-background);
         color: var(--color-focused);
         transform: translate(.25rem, -65%) scale(.8);
       }
