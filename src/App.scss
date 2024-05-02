@@ -1,0 +1,32 @@
+:root {
+  --color-light: white;
+  --color-dark: #212121;
+  --color-focused: #007bff;
+  --color-error: #FD5361;
+  
+  --color-background: var(--color-light);
+  --color-text: var(--color-dark);
+  
+  --size-bezel: .5rem;
+  --size-radius: 4px;
+  
+  line-height: 1.4;
+  
+  font-family: 'Inter', sans-serif;
+  font-size: calc(.6rem + .4vw);
+  color: var(--color-text);
+  background: var(--color-background);
+  font-weight: 300;
+}
+
+.fieldset {
+  padding: calc(4 * var(--size-bezel));
+  margin-top: calc(4 * var(--size-bezel));
+  border-radius: var(--size-radius);
+  border: 3px solid var(--color-shadow, currentColor);
+  box-shadow: .5rem .5rem 0 var(--color-shadow, currentColor);
+  
+  *:first-child {
+    margin-top: 0;
+  }
+}
