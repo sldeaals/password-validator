@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import { TextFieldVariant } from "../../types";
+import { BaseTextFieldProps } from "../../types";
 import "./styles.scss";
 
-interface BasicTextFieldProps {
-  label: string;
-  type?: string;
-  placeholder?: string;
-  variant?: TextFieldVariant;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface BasicTextFieldProps extends BaseTextFieldProps {
   error?: boolean;
 }
 

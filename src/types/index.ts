@@ -11,3 +11,13 @@ export interface ValidPassword {
   password: string;
   message: string;
 }
+
+export type TextFieldVariant = "outlined" | "standard";
+
+export interface BaseTextFieldProps {
+  label: string;
+  type?: string;
+  placeholder?: string;
+  variant?: TextFieldVariant;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
