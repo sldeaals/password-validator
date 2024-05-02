@@ -6,7 +6,7 @@ interface BasicTextFieldProps {
   type?: string;
   placeholder?: string;
   variant?: "outlined" | "standard";
-  onChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const BasicTextField: React.FC<BasicTextFieldProps> = ({
@@ -22,7 +22,7 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
     const newValue = e.target.value;
     setValue(newValue);
     if (onChange) {
-      onChange(newValue);
+      onChange(e);
     }
   };
 
