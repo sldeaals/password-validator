@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { TextFieldVariant } from "../../types";
 import "./styles.scss";
 
 interface BasicTextFieldProps {
   label: string;
   type?: string;
   placeholder?: string;
-  variant?: "outlined" | "standard";
+  variant?: TextFieldVariant;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: boolean;
 }
 
 const BasicTextField: React.FC<BasicTextFieldProps> = ({
@@ -15,35 +17,30 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   placeholder = "",
   variant = "standard",
   onChange,
+  error = false,
 }) => {
   const [value, setValue] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
-    if (onChange) {
-      onChange(e);
-    }
+    onChange?.(e);
   };
 
   const handleFocus = () => {
     const labelElement = document.querySelector(".input__label");
-    if (labelElement) {
-      labelElement.classList.add("focused");
-    }
+    labelElement?.classList.add("focused");
   };
 
   const handleBlur = () => {
     const labelElement = document.querySelector(".input__label");
-    if (!value && labelElement) {
-      labelElement.classList.remove("focused");
-    }
+    !value && labelElement?.classList.remove("focused");
   };
 
   return (
     <label className={`input`}>
       <input
-        className={`input__field ${variant}`}
+        className={`input__field ${variant} ${error ? "error" : ""}`}
         type={type}
         value={value}
         onChange={handleChange}

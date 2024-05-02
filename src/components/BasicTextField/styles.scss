@@ -43,9 +43,25 @@
   &:focus {
     border-bottom: 2px solid var(--color-focused);
   }
+
+  &.error {
+    border-bottom-color: var(--color-error);
+
+    &:focus {
+      border-bottom-color: var(--color-error); 
+    }
+  }
 }
 
 .outlined {
   border: 1px solid currentColor;
   border-radius: var(--size-radius);
+
+  &.error {
+    border-bottom-color: var(--color-error);
+
+    &:focus {
+      border-bottom-color: var(--color-error); 
+    }
+  }
 }
