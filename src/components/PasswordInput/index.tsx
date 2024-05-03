@@ -3,7 +3,6 @@ import BasicTextField from "../BasicTextField";
 import { BaseTextFieldProps, PasswordRules, ValidPassword } from "../../types";
 import { validatePassword } from "../../utils";
 import PasswordToggle from "./PasswordToggle";
-import "./styles.scss";
 
 interface PasswordInputProps extends BaseTextFieldProps {
   rules?: PasswordRules;

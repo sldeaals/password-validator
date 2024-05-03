@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { BaseTextFieldProps } from "../../types";
 import "./styles.scss";
 
@@ -19,7 +19,8 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   endIcon,
 }) => {
   const [value, setValue] = useState<string>("");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputFieldClass = `input__field ${variant} ${error ? "error" : ""} ${startIcon ? "icon-start" : ""} ${endIcon ? "icon-end" : ""}`;
+  const inputLabelClass = `input__label ${value ? "focused" : ""}`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -28,21 +29,20 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   };
 
   const handleFocus = () => {
-    inputRef.current?.classList.add("focused");
+    document.activeElement?.classList.add("focused");
   };
 
   const handleBlur = () => {
     if (!value) {
-      inputRef.current?.classList.remove("focused");
+      document.activeElement?.classList.remove("focused");
     }
   };
 
   return (
     <label className={`input`}>
-      {startIcon && <div className="icon">{startIcon}</div>}
+      {startIcon && <div className="icon start">{startIcon}</div>}
       <input
-        ref={inputRef}
-        className={`input__field ${variant} ${error ? "error" : ""}`}
+        className={inputFieldClass}
         type={type}
         value={value}
         onChange={handleChange}
@@ -50,8 +50,8 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
         onBlur={handleBlur}
         placeholder={placeholder}
       />
-      <span className={`input__label ${value ? "focused" : ""}`}>{label}</span>
-      {endIcon && <div className="icon">{endIcon}</div>}
+      <span className={inputLabelClass}>{label}</span>
+      {endIcon && <div className="icon end">{endIcon}</div>}
     </label>
   );
 };
