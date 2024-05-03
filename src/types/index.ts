@@ -14,10 +14,21 @@ export interface ValidPassword {
 
 export type TextFieldVariant = "outlined" | "standard";
 
+export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
+  children?: React.ReactNode;
+  size?: string | number;
+  color?: string;
+  title?: string;
+}
+
+export type IconType = (props: IconBaseProps) => JSX.Element;
+
 export interface BaseTextFieldProps {
-  label: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
   type?: string;
   placeholder?: string;
   variant?: TextFieldVariant;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  startIcon?: React.ReactNode | JSX.Element | IconType;
+  endIcon?: React.ReactNode | JSX.Element | IconType;
 }

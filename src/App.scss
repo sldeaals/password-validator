@@ -20,13 +20,11 @@
 }
 
 .fieldset {
+  display: flex;
+  align-items: normal;
   padding: calc(4 * var(--size-bezel));
   margin-top: calc(4 * var(--size-bezel));
   border-radius: var(--size-radius);
   border: 3px solid var(--color-shadow, currentColor);
   box-shadow: .5rem .5rem 0 var(--color-shadow, currentColor);
-  
-  *:first-child {
-    margin-top: 0;
-  }
 }

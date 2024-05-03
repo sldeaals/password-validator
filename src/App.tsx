@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import { BasicTextField } from "./components";
+import "./App.scss";
+import { BasicTextField, PasswordInput } from "./components";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       </header>
       <div className="App-body">
         <div className="App-body-input">
-          <BasicTextField label="Basic Input Field" />
+          {<BasicTextField label="Basic Input Field" />}
+          <div className="fieldset">{<PasswordInput />}</div>
         </div>
       </div>
       <footer className="App-footer">
