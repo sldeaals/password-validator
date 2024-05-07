@@ -11,7 +11,7 @@ function App() {
       </header>
       <div className="App-body">
         <div className="App-body-input">
-          <Fieldset>{<PasswordInput />}</Fieldset>
+          <Fieldset>{<PasswordInput validate showCriteria />}</Fieldset>
         </div>
       </div>
       <footer className="App-footer">
