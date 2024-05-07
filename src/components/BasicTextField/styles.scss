@@ -1,6 +1,6 @@
 .input {
   position: relative;
-  margin: 8px;
+  margin: 8px 8px 2px 8px;
   
   &__label {
     position: absolute;
@@ -43,10 +43,6 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    &.start {
-      pointer-events: none;
-      left: 8px;
-    }
     &.end {
       cursor: pointer;
       right: 8px;
@@ -55,9 +51,6 @@
 }
 
 .input__field {
-  &.icon-start {
-    padding-left: 24px;
-  }
   &.icon-end {
     padding-right: 24px;
   }

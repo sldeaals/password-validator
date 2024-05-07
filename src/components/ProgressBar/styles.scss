@@ -1,0 +1,30 @@
+.password-meter {
+  display: flex;
+  height: 3px;
+  width: 100%;
+  background-color: 'whitesmoke';
+  border-radius: 2px;
+  margin: auto;
+  padding: 8px;
+}
+  
+.password-meter-progress {
+  height: 100%;
+  background-color: #00ff00;
+  transition: width 0.3s ease;
+}
+  
+.password-meter-segment-weak {
+  background-color: red;
+  transition: width 0.3s ease;
+}
+  
+.password-meter-segment-medium {
+  background-color: orange;
+  transition: width 0.3s ease;
+}
+  
+.password-meter-segment-strong {
+  background-color: yellow;
+  transition: width 0.3s ease;
+}

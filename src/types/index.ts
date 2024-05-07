@@ -1,7 +1,23 @@
+export enum CRITERION {
+  MIN_LENGTH = "minLength",
+  LOWER_CASE = "lowerCase",
+  UPPER_CASE = "upperCase",
+  NUMBER = "number",
+  SYMBOL = "symbol",
+}
+
+export interface ConditionPassed {
+  [CRITERION.MIN_LENGTH]: boolean;
+  [CRITERION.LOWER_CASE]: boolean;
+  [CRITERION.UPPER_CASE]: boolean;
+  [CRITERION.NUMBER]: boolean;
+  [CRITERION.SYMBOL]: boolean;
+}
+
 export interface PasswordRules {
-  length: number;
-  isUpperCase?: boolean;
+  length?: number;
   isLowerCase?: boolean;
+  isUpperCase?: boolean;
   hasNumber?: boolean;
   hasSymbol?: boolean;
 }
@@ -25,10 +41,17 @@ export type IconType = (props: IconBaseProps) => JSX.Element;
 
 export interface BaseTextFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
   label?: string;
   type?: string;
   placeholder?: string;
   variant?: TextFieldVariant;
   startIcon?: React.ReactNode | JSX.Element | IconType;
   endIcon?: React.ReactNode | JSX.Element | IconType;
+}
+
+export enum StrengthType {
+  WEAK = "weak",
+  NORMAL = "normal",
+  STRONG = "strong",
 }

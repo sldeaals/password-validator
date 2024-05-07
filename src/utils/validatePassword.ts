@@ -1,31 +1,42 @@
 import { PasswordRules, ValidPassword } from "../types";
+import { RULES } from "../utils";
+import { MAX_LENGTH } from "./constants";
 
 const validatePassword = (
   text: string,
   rules: PasswordRules,
 ): ValidPassword => {
-  const { length = 32, isUpperCase, isLowerCase, hasNumber, hasSymbol } = rules;
+  const {
+    length = MAX_LENGTH,
+    isUpperCase,
+    isLowerCase,
+    hasNumber,
+    hasSymbol,
+  } = rules;
 
-  const upperCaseCount = (text.match(/[A-Z]/g) || []).length;
-  const lowerCaseCount = (text.match(/[a-z]/g) || []).length;
-  const numberCount = (text.match(/[0-9]/g) || []).length;
-  const symbolCount = (text.match(/[!@#$%^&*(),.?':{}|<>]/g) || []).length;
+  const upperCaseCount: number = (text.match(RULES.upperCase) || []).length;
+  const lowerCaseCount: number = (text.match(RULES.lowerCase) || []).length;
+  const numberCount: number = (text.match(RULES.number) || []).length;
+  const symbolCount: number = (text.match(RULES.symbol) || []).length;
 
-  const minLength = 8;
-  const maxLength = length < 12 ? 12 : length;
+  const minLength: number = 8;
+  const maxLength: number = length < 12 ? 16 : length;
 
-  let message = "";
-  let valid = true;
+  let message: string = "";
+  let valid: boolean = true;
 
   if (text.length > 0) {
-    if (text.length < minLength || text.length > maxLength) {
-      message = `Password must be between ${minLength} and ${maxLength} characters long`;
+    if (text.length < minLength) {
+      message = `Password must be at least ${minLength} characters long`;
       valid = false;
-    } else if (isUpperCase && upperCaseCount < 2) {
-      message = "Password must have at least 2 uppercase letters";
+    } else if (text.length > maxLength) {
+      message = `Password must be between ${minLength} and ${maxLength} characters long`;
       valid = false;
     } else if (isLowerCase && lowerCaseCount < 2) {
       message = "Password must have at least 2 lowercase letters";
+      valid = false;
+    } else if (isUpperCase && upperCaseCount < 2) {
+      message = "Password must have at least 2 uppercase letters";
       valid = false;
     } else if (hasNumber && numberCount < 2) {
       message = "Password must have at least 2 numbers";
