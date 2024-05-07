@@ -3,24 +3,26 @@ import { BaseTextFieldProps } from "../../types";
 import "./styles.scss";
 
 interface BasicTextFieldProps extends BaseTextFieldProps {
-  error?: boolean;
-  startIcon?: React.ReactNode;
+  error?: string;
   endIcon?: React.ReactNode;
 }
 
 const BasicTextField: React.FC<BasicTextFieldProps> = ({
   onChange,
+  className = "",
   label = "text",
   type = "text",
   placeholder = "",
   variant = "standard",
-  error = false,
-  startIcon,
+  error = "",
   endIcon,
 }) => {
   const [value, setValue] = useState<string>("");
-  const inputFieldClass = `input__field ${variant} ${error ? "error" : ""} ${startIcon ? "icon-start" : ""} ${endIcon ? "icon-end" : ""}`;
-  const inputLabelClass = `input__label ${value ? "focused" : ""}`;
+
+  const parentClass = `input-wrapper ${className}`.trim();
+  const inputFieldClass =
+    `input__field ${variant} ${error ? "error" : ""} ${endIcon ? "icon-end" : ""}`.trim();
+  const inputLabelClass = `input__label ${value ? "focused" : ""}`.trim();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -39,20 +41,21 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   };
 
   return (
-    <label className={`input`}>
-      {startIcon && <div className="icon start">{startIcon}</div>}
-      <input
-        className={inputFieldClass}
-        type={type}
-        value={value}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        placeholder={placeholder}
-      />
-      <span className={inputLabelClass}>{label}</span>
-      {endIcon && <div className="icon end">{endIcon}</div>}
-    </label>
+    <div className={parentClass}>
+      <label className={`input`}>
+        <input
+          className={inputFieldClass}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+        />
+        <span className={inputLabelClass}>{label}</span>
+        {endIcon && <div className="icon end">{endIcon}</div>}
+      </label>
+    </div>
   );
 };
 

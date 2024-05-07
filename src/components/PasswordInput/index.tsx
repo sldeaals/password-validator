@@ -3,6 +3,7 @@ import BasicTextField from "../BasicTextField";
 import { BaseTextFieldProps, PasswordRules, ValidPassword } from "../../types";
 import { validatePassword } from "../../utils";
 import PasswordToggle from "./PasswordToggle";
+import PasswordCriteria from "./PasswordCriteria";
 
 interface PasswordInputProps extends BaseTextFieldProps {
   rules?: PasswordRules;
@@ -10,12 +11,13 @@ interface PasswordInputProps extends BaseTextFieldProps {
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
   onChange,
+  className = "",
   label = "password",
   variant,
   rules = {
-    length: 26,
-    isUpperCase: true,
+    length: 24,
     isLowerCase: true,
+    isUpperCase: true,
     hasNumber: true,
     hasSymbol: true,
   },
@@ -26,6 +28,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   const [validPassword, setValidPassword] = useState<ValidPassword | undefined>(
     undefined,
   );
+
+  const parentClass = `input-wrapper ${className}`.trim();
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,24 +48,23 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   };
 
   return (
-    <BasicTextField
-      label={label}
-      type={showPassword ? "text" : "password"}
-      onChange={handleChange}
-      placeholder={placeholder}
-      variant={variant}
-      endIcon={
-        <PasswordToggle
-          showPassword={showPassword}
-          togglePassword={togglePassword}
-        />
-      }
-      error={
-        validPassword?.valid || validPassword?.valid === undefined
-          ? false
-          : true
-      }
-    />
+    <div className={parentClass}>
+      <BasicTextField
+        label={label}
+        type={showPassword ? "text" : "password"}
+        onChange={handleChange}
+        placeholder={placeholder}
+        variant={variant}
+        endIcon={
+          <PasswordToggle
+            showPassword={showPassword}
+            togglePassword={togglePassword}
+          />
+        }
+        error={validPassword?.message}
+      />
+      <PasswordCriteria password={password} rules={rules} />
+    </div>
   );
 };
 
