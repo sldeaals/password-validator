@@ -1,0 +1,63 @@
+.complexity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 4px;
+  padding-bottom: var(--size-bezel);
+  margin-top: var(--size-bezel);
+  cursor: default;
+  text-align: center;
+
+  .input__label {
+    display: none;
+  }
+
+  .input__field {
+    text-align: center;
+    background-color: var(--color-light);
+  }
+}
+
+.lgd_out_pg_pass {
+    margin-bottom: var(--size-bezel);
+    background-color: #ffffff;
+}
+.lgd_out_pg_pass {
+    height: 40px;
+    font-size: x-large;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-info-text);
+  padding: 0px var(--size-bezel);
+  margin: initial;
+  margin-top: var(--size-bezel);
+  margin-bottom: var(--size-bezel);
+}
+
+.strength {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.meter-none {
+  color: var(--color-info-text);
+}
+
+.meter-weak {
+  color: red;
+}
+
+.meter-normal {
+  color: orange;
+}
+
+.meter-strong {
+  color: green;
+}
