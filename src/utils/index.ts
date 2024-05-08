@@ -1,5 +1,6 @@
 import validatePassword from "./validatePassword";
 import calculateStrength from "./calculateStrength";
+import generatePassword from "./generatePassword";
 import { RULES } from "./constants";
 
-export { validatePassword, calculateStrength, RULES };
+export { validatePassword, calculateStrength, generatePassword, RULES };

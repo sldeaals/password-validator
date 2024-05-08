@@ -7,6 +7,8 @@ import PasswordCriteria from "./PasswordCriteria";
 
 interface PasswordInputProps extends BaseTextFieldProps {
   rules?: PasswordRules;
+  validate?: boolean;
+  showCriteria?: boolean;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -22,6 +24,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     hasSymbol: true,
   },
   placeholder = "",
+  validate = false,
+  showCriteria = false,
 }) => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -38,9 +42,11 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
       if (onChange) {
         onChange(e);
       }
-      setValidPassword(validatePassword(newValue, rules));
+      if (validate) {
+        setValidPassword(validatePassword(newValue, rules));
+      }
     },
-    [onChange, rules],
+    [onChange, validate, rules],
   );
 
   const togglePassword = () => {
@@ -63,7 +69,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         }
         error={validPassword?.message}
       />
-      <PasswordCriteria password={password} rules={rules} />
+      {showCriteria && <PasswordCriteria password={password} rules={rules} />}
     </div>
   );
 };

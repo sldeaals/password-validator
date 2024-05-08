@@ -3,6 +3,9 @@
   --color-dark: #212121;
   --color-focused: #007bff;
   --color-error: #FD5361;
+  --color-info-text: gray;
+
+  --color-background-header: var(--color-dark);
   
   --color-background: var(--color-light);
   --color-text: var(--color-dark);
@@ -15,7 +18,7 @@
   line-height: 1.4;
   
   font-family: 'Inter', sans-serif;
-  font-size: calc(10px + .4vw);
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-background);
   font-weight: 300;
@@ -24,6 +27,7 @@
 .input-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   align-items: normal;
   justify-content: center;
   margin: auto;
