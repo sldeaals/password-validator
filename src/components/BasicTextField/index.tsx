@@ -3,12 +3,14 @@ import { BaseTextFieldProps } from "../../types";
 import "./styles.scss";
 
 interface BasicTextFieldProps extends BaseTextFieldProps {
+  value?: string;
   error?: string;
   endIcon?: React.ReactNode;
 }
 
 const BasicTextField: React.FC<BasicTextFieldProps> = ({
   onChange,
+  value: passedValue,
   className = "",
   label = "text",
   type = "text",
@@ -16,6 +18,7 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
   variant = "standard",
   error = "",
   endIcon,
+  readOnly,
 }) => {
   const [value, setValue] = useState<string>("");
 
@@ -46,11 +49,12 @@ const BasicTextField: React.FC<BasicTextFieldProps> = ({
         <input
           className={inputFieldClass}
           type={type}
-          value={value}
+          value={passedValue || value}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={placeholder}
+          readOnly={readOnly}
         />
         <span className={inputLabelClass}>{label}</span>
         {endIcon && <div className="icon end">{endIcon}</div>}
