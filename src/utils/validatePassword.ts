@@ -1,6 +1,6 @@
 import { PasswordRules, ValidPassword } from "../types";
 import { RULES } from "../utils";
-import { MAX_LENGTH } from "./constants";
+import { MAX_LENGTH, RULES_MESSAGES } from "./constants";
 
 const validatePassword = (
   text: string,
@@ -27,22 +27,22 @@ const validatePassword = (
 
   if (text.length > 0) {
     if (text.length < minLength) {
-      message = `Password must be at least ${minLength} characters long`;
+      message = RULES_MESSAGES.minLength;
       valid = false;
     } else if (text.length > maxLength) {
       message = `Password must be between ${minLength} and ${maxLength} characters long`;
       valid = false;
     } else if (isLowerCase && lowerCaseCount < 2) {
-      message = "Password must have at least 2 lowercase letters";
+      message = RULES_MESSAGES.lowerCase;
       valid = false;
     } else if (isUpperCase && upperCaseCount < 2) {
-      message = "Password must have at least 2 uppercase letters";
+      message = RULES_MESSAGES.upperCase;
       valid = false;
     } else if (hasNumber && numberCount < 2) {
-      message = "Password must have at least 2 numbers";
+      message = RULES_MESSAGES.number;
       valid = false;
     } else if (hasSymbol && symbolCount < 2) {
-      message = "Password must have at least 2 symbols";
+      message = RULES_MESSAGES.symbol;
       valid = false;
     }
   }
