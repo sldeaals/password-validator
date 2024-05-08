@@ -46,8 +46,8 @@ export interface BaseTextFieldProps {
   type?: string;
   placeholder?: string;
   variant?: TextFieldVariant;
-  startIcon?: React.ReactNode | JSX.Element | IconType;
   endIcon?: React.ReactNode | JSX.Element | IconType;
+  readOnly?: boolean;
 }
 
 export enum StrengthType {
