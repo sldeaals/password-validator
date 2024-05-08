@@ -46,7 +46,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         setValidPassword(validatePassword(newValue, rules));
       }
     },
-    [onChange, rules],
+    [onChange, validate, rules],
   );
 
   const togglePassword = () => {
