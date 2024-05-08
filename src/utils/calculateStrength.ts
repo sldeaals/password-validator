@@ -48,7 +48,7 @@ const calculateStrength = (
 
   if (strength <= 3) {
     strengthType = StrengthType.WEAK;
-  } else if (strength <= 5) {
+  } else if (strength <= 4) {
     strengthType = StrengthType.NORMAL;
   } else {
     strengthType = StrengthType.STRONG;
