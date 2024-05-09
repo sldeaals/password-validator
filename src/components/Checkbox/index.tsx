@@ -22,7 +22,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   return (
     <div className={`checkbox-wrapper ${className}`}>
       <input type="checkbox" checked={checked} onChange={handleChange} />
-      <label>{label}</label>
+      <label className="checkbox-label">{label}</label>
     </div>
   );
 };
