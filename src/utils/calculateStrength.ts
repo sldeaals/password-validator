@@ -1,7 +1,12 @@
-import { PasswordRules } from "../types";
+import {
+  PasswordRules,
+  StrengthType,
+  ConditionPassed,
+  CRITERION,
+  Conditions,
+} from "../types";
 import { RULES } from "../utils";
-import { StrengthType, ConditionPassed } from "../types";
-import { MIN_LEN } from "./constants";
+import { MIN_LEN, STRONG_PSW_LEN } from "./constants";
 
 interface StrengthMeter {
   strength: number;
@@ -13,48 +18,49 @@ const calculateStrength = (
   text: string,
   rules: PasswordRules,
 ): StrengthMeter => {
-  const { isUpperCase, isLowerCase, hasNumber, hasSymbol } = rules;
-
-  let strength: number = 0;
-  let strengthType: StrengthType;
-  const conditionMet = {
-    minLength: false,
-    upperCase: false,
-    lowerCase: false,
-    number: false,
-    symbol: false,
+  const isUpperCase = RULES.upperCase.test(text);
+  const isLowerCase = RULES.lowerCase.test(text);
+  const hasNumber = RULES.numbers.test(text);
+  const hasSymbol = RULES.symbols.test(text);
+  const hasMinLen = text.length >= MIN_LEN;
+  const conditions: Conditions = {
+    [CRITERION.MIN_LENGTH]: false,
+    [CRITERION.LOWER_CASE]: false,
+    [CRITERION.UPPER_CASE]: false,
+    [CRITERION.NUMBERS]: false,
+    [CRITERION.SYMBOLS]: false,
   };
+  let strength: number = 0;
 
-  if (text.length >= MIN_LEN) {
-    conditionMet.minLength = true;
+  if (text.length > 0 && hasMinLen) {
+    conditions[CRITERION.MIN_LENGTH] = true;
     strength++;
   }
-  if (isLowerCase && RULES.lowerCase.test(text)) {
-    conditionMet.lowerCase = true;
+  if (rules.isLowerCase && isLowerCase) {
+    conditions[CRITERION.LOWER_CASE] = true;
     strength++;
   }
-  if (isUpperCase && RULES.upperCase.test(text)) {
-    conditionMet.upperCase = true;
+  if (rules.isUpperCase && isUpperCase) {
+    conditions[CRITERION.UPPER_CASE] = true;
     strength++;
   }
-  if (hasNumber && RULES.number.test(text)) {
-    conditionMet.number = true;
+  if (rules.hasNumber && hasNumber) {
+    conditions[CRITERION.NUMBERS] = true;
     strength++;
   }
-  if (hasSymbol && RULES.symbol.test(text)) {
-    conditionMet.symbol = true;
+  if (rules.hasSymbol && hasSymbol) {
+    conditions[CRITERION.SYMBOLS] = true;
     strength++;
-  }
-
-  if (strength <= 3) {
-    strengthType = StrengthType.WEAK;
-  } else if (strength <= 4) {
-    strengthType = StrengthType.NORMAL;
-  } else {
-    strengthType = StrengthType.STRONG;
   }
 
-  return { strength, type: strengthType, conditions: { ...conditionMet } };
+  const strengthType =
+    strength <= 3
+      ? StrengthType.WEAK
+      : strength >= 5 && text.length >= STRONG_PSW_LEN
+        ? StrengthType.STRONG
+        : StrengthType.NORMAL;
+
+  return { strength, type: strengthType, conditions };
 };
 
 export default calculateStrength;

@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import "./App.scss";
 import { Fieldset, PasswordInput, PasswordGenerator } from "./components";
-import reactLogo from "./assets/react.svg";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Fieldset>{<PasswordGenerator />}</Fieldset>
       </div>
       <footer className="App-footer">
-        <img src={reactLogo} className="App-logo" alt="React logo" />
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -24,7 +22,6 @@ function App() {
         >
           Learn React
         </a>
-        <img src={reactLogo} className="App-logo" alt="React logo" />
       </footer>
     </div>
   );

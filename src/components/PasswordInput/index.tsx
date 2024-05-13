@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import BasicTextField from "../BasicTextField";
 import { BaseTextFieldProps, PasswordRules, ValidPassword } from "../../types";
 import { validatePassword } from "../../utils";
+import { DEFAULT_RULES } from "../../utils/constants";
 import PasswordToggle from "./PasswordToggle";
 import PasswordCriteria from "./PasswordCriteria";
 
@@ -16,13 +17,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   className = "",
   label = "password",
   variant,
-  rules = {
-    length: 24,
-    isLowerCase: true,
-    isUpperCase: true,
-    hasNumber: true,
-    hasSymbol: true,
-  },
+  rules = DEFAULT_RULES,
   placeholder = "",
   validate = false,
   showCriteria = false,
