@@ -2,16 +2,24 @@ export enum CRITERION {
   MIN_LENGTH = "minLength",
   LOWER_CASE = "lowerCase",
   UPPER_CASE = "upperCase",
-  NUMBER = "number",
-  SYMBOL = "symbol",
+  NUMBERS = "numbers",
+  SYMBOLS = "symbols",
+}
+
+export enum CRITERIA {
+  LENGTH = "length",
+  IS_LOWER_CASE = "isLowerCase",
+  IS_UPPER_CASE = "isUpperCase",
+  HAS_NUMBERS = "hasNumber",
+  HAS_SYMBOLS = "hasSymbol",
 }
 
 export interface ConditionPassed {
   [CRITERION.MIN_LENGTH]: boolean;
   [CRITERION.LOWER_CASE]: boolean;
   [CRITERION.UPPER_CASE]: boolean;
-  [CRITERION.NUMBER]: boolean;
-  [CRITERION.SYMBOL]: boolean;
+  [CRITERION.NUMBERS]: boolean;
+  [CRITERION.SYMBOLS]: boolean;
 }
 
 export interface PasswordRules {
@@ -55,3 +63,11 @@ export enum StrengthType {
   NORMAL = "normal",
   STRONG = "strong",
 }
+
+export type Conditions = {
+  [CRITERION.MIN_LENGTH]: boolean;
+  [CRITERION.LOWER_CASE]: boolean;
+  [CRITERION.UPPER_CASE]: boolean;
+  [CRITERION.NUMBERS]: boolean;
+  [CRITERION.SYMBOLS]: boolean;
+};
