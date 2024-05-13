@@ -6,15 +6,10 @@ import BasicTextField from "../BasicTextField";
 import Checkbox from "../Checkbox";
 import GeneratePasswordButton from "../GeneratePasswordButton";
 import { generatePassword, calculateStrength } from "../../utils";
+import { DEFAULT_RULES } from "../../utils/constants";
 
 const PasswordGenerator: React.FC = () => {
-  const [rules, setRules] = useState<PasswordRules>({
-    length: 12,
-    isLowerCase: false,
-    isUpperCase: false,
-    hasNumber: false,
-    hasSymbol: false,
-  });
+  const [rules, setRules] = useState<PasswordRules>(DEFAULT_RULES);
   const [generatedPassword, setGeneratedPassword] = useState<string>("");
   const [strength, setStrength] = useState<string>("");
 

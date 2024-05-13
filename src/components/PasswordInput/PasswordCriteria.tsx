@@ -3,6 +3,7 @@ import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
 import { RULES_MESSAGES } from "../../utils/constants";
 import { PasswordRules, CRITERION } from "../../types";
 import { calculateStrength } from "../../utils";
+import { DEFAULT_RULES } from "../../utils/constants";
 import "./styles.scss";
 
 interface PasswordCriteriaProps {
@@ -12,13 +13,7 @@ interface PasswordCriteriaProps {
 
 const PasswordCriteria: React.FC<PasswordCriteriaProps> = ({
   password,
-  rules = {
-    length: 24,
-    isLowerCase: true,
-    isUpperCase: true,
-    hasNumber: true,
-    hasSymbol: true,
-  },
+  rules = DEFAULT_RULES,
 }) => {
   const passwordObj = calculateStrength(password, rules);
 
@@ -35,11 +30,11 @@ const PasswordCriteria: React.FC<PasswordCriteriaProps> = ({
         case CRITERION.UPPER_CASE:
           criteria = RULES_MESSAGES.upperCase;
           break;
-        case CRITERION.NUMBER:
-          criteria = RULES_MESSAGES.number;
+        case CRITERION.NUMBERS:
+          criteria = RULES_MESSAGES.numbers;
           break;
-        case CRITERION.SYMBOL:
-          criteria = RULES_MESSAGES.symbol;
+        case CRITERION.SYMBOLS:
+          criteria = RULES_MESSAGES.symbols;
           break;
         default:
           criteria = "";
