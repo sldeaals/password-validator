@@ -1,0 +1,30 @@
+.password-criteria {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style-type: none;
+  padding: 0px var(--size-bezel);
+  margin: initial;
+  margin-top: var(--size-bezel);
+}
+
+.password-criteria li {
+  align-items: baseline;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+
+.criterion {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  color: var(--color-info-text);
+}
+
+.criterion-passed {
+  color: green;
+}
+
+.criterion-not-passed {
+  color: red;
+}

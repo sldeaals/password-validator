@@ -1,0 +1,11 @@
+.fieldset {
+  max-height: 100%;
+  width: 60%;
+  max-width: 512px;
+  display: flex;
+  align-items: normal;
+  padding: calc(4 * var(--size-bezel));
+  border-radius: var(--size-radius);
+  border: 3px solid var(--color-shadow, currentColor);
+  box-shadow: var(--size-bezel) var(--size-bezel) 0 var(--color-shadow, currentColor);
+}
