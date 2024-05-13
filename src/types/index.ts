@@ -71,3 +71,6 @@ export type Conditions = {
   [CRITERION.NUMBERS]: boolean;
   [CRITERION.SYMBOLS]: boolean;
 };
+
+export type Language = "en" | "zh" | "es" | "hi" | "ar";
+export type Translations = Record<string, { [key in Language]: string }>;
