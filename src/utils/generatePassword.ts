@@ -1,5 +1,6 @@
 import { PasswordRules } from "../types";
 import { RULES } from "../utils";
+import { CHAR_COUNT } from "../utils/constants";
 
 const generatePassword = (rules: PasswordRules) => {
   const trueCount = Object.values(rules).filter(
@@ -24,7 +25,7 @@ const generatePassword = (rules: PasswordRules) => {
     characters += "0123456789";
   }
   if (rules.hasSymbol) {
-    characters += "~!@#$%^&*()";
+    characters += "!@#$%&_";
   }
 
   if (
@@ -44,22 +45,22 @@ const generatePassword = (rules: PasswordRules) => {
         .length;
       const lowerCaseCount: number = (password.match(RULES.lowerCase) || [])
         .length;
-      const numberCount: number = (password.match(RULES.number) || []).length;
-      const symbolCount: number = (password.match(RULES.symbol) || []).length;
+      const numberCount: number = (password.match(RULES.numbers) || []).length;
+      const symbolCount: number = (password.match(RULES.symbols) || []).length;
 
-      if (rules?.isLowerCase && lowerCaseCount > 2) {
+      if (rules?.isLowerCase && lowerCaseCount >= CHAR_COUNT) {
         criteriaPassedCount++;
       }
 
-      if (rules?.isUpperCase && upperCaseCount > 2) {
+      if (rules?.isUpperCase && upperCaseCount >= CHAR_COUNT) {
         criteriaPassedCount++;
       }
 
-      if (rules?.hasNumber && numberCount > 2) {
+      if (rules?.hasNumber && numberCount >= CHAR_COUNT) {
         criteriaPassedCount++;
       }
 
-      if (rules?.hasSymbol && symbolCount > 2) {
+      if (rules?.hasSymbol && symbolCount >= CHAR_COUNT) {
         criteriaPassedCount++;
       }
 
