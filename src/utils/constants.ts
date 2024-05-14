@@ -37,8 +37,8 @@ export const DEFAULT_RULES = {
 
 export const languages: { [key in Language]: string } = {
   en: "English",
-  zh: "Mandarin Chinese",
-  es: "Spanish",
-  hi: "Hindi",
-  ar: "Arabic",
+  zh: "中文",
+  es: "Español",
+  hi: "हिन्दी",
+  ar: "العربية",
 };
