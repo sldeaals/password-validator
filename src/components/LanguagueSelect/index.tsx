@@ -2,11 +2,15 @@ import React, { FC } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { languages } from "../../utils/constants";
 
-const LanguageSelect: FC = () => {
+interface LanguageSelectProps {
+  className?: string;
+}
+
+const LanguageSelect: FC<LanguageSelectProps> = ({ className }) => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <select value={language} onChange={toggleLanguage}>
+    <select className={className} value={language} onChange={toggleLanguage}>
       {Object.entries(languages).map(([code, name]) => (
         <option key={code} value={code}>
           {name}
