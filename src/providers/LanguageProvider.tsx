@@ -6,8 +6,26 @@ interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
+const switchLang = (lang: string) => {
+  switch (lang) {
+    case "en":
+      return "en";
+    case "zh":
+      return "zh";
+    case "es":
+      return "es";
+    case "hi":
+      return "hi";
+    case "ar":
+      return "ar";
+    default:
+      return "en";
+  }
+};
+
 const LanguageProvider: FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const userLanguage = switchLang(navigator.language.split("-")[0]);
+  const [language, setLanguage] = useState<Language>(userLanguage);
 
   const translate = (key: string, translations: Translations): string => {
     return translations[key][language];
