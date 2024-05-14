@@ -5,16 +5,24 @@ import { Fieldset, PasswordInput, PasswordGenerator } from "./components";
 import { translations } from "./translations";
 import LanguageSelect from "./components/LanguagueSelect";
 import useLanguage from "./hooks/useLanguage";
+import reactLogo from "./assets/react.svg";
 
 function App() {
   const { translate } = useLanguage();
   return (
     <div className="App">
       <header className="App-header">
-        <h1>{translate(`passwordValidator`, translations)}</h1>
+        <div className="App-header-side">
+          <img src={reactLogo} className="App-logo" alt="React logo" />
+        </div>
+        <h1 className="App-header-text">
+          {translate(`passwordValidator`, translations)}
+        </h1>
+        <div className="App-header-side">
+          <LanguageSelect />
+        </div>
       </header>
       <div className="App-body">
-        <LanguageSelect />
         <Fieldset>{<PasswordInput validate showCriteria />}</Fieldset>
         <Fieldset>{<PasswordGenerator />}</Fieldset>
       </div>
