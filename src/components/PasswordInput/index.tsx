@@ -5,6 +5,8 @@ import { validatePassword } from "../../utils";
 import { DEFAULT_RULES } from "../../utils/constants";
 import PasswordToggle from "./PasswordToggle";
 import PasswordCriteria from "./PasswordCriteria";
+import useLanguage from "../../hooks/useLanguage";
+import { translations } from "../../translations";
 
 interface PasswordInputProps extends BaseTextFieldProps {
   rules?: PasswordRules;
@@ -15,13 +17,15 @@ interface PasswordInputProps extends BaseTextFieldProps {
 const PasswordInput: React.FC<PasswordInputProps> = ({
   onChange,
   className = "",
-  label = "password",
+  label,
   variant,
   rules = DEFAULT_RULES,
   placeholder = "",
   validate = false,
   showCriteria = false,
 }) => {
+  const { translate } = useLanguage();
+
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [validPassword, setValidPassword] = useState<ValidPassword | undefined>(
@@ -51,7 +55,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   return (
     <div className={parentClass}>
       <BasicTextField
-        label={label}
+        label={label || translate(`passwordLabel`, translations)}
         type={showPassword ? "text" : "password"}
         onChange={handleChange}
         placeholder={placeholder}

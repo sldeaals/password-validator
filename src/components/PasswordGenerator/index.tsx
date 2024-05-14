@@ -7,8 +7,12 @@ import Checkbox from "../Checkbox";
 import GeneratePasswordButton from "../GeneratePasswordButton";
 import { generatePassword, calculateStrength } from "../../utils";
 import { DEFAULT_RULES } from "../../utils/constants";
+import useLanguage from "../../hooks/useLanguage";
+import { translations } from "../../translations";
 
 const PasswordGenerator: React.FC = () => {
+  const { translate } = useLanguage();
+
   const [rules, setRules] = useState<PasswordRules>(DEFAULT_RULES);
   const [generatedPassword, setGeneratedPassword] = useState<string>("");
   const [strength, setStrength] = useState<string>("");
@@ -35,7 +39,7 @@ const PasswordGenerator: React.FC = () => {
         className="lgd_out_pg_pass"
         type="text"
         value={generatedPassword}
-        placeholder="Type a password"
+        placeholder={translate(`typePassword`, translations)}
         endIcon={
           <FaClipboard
             onClick={() => {
@@ -46,27 +50,27 @@ const PasswordGenerator: React.FC = () => {
         readOnly
       />
       <span className={strengthMeter}>
-        {generatedPassword ? strength : "No password"}
+        {generatedPassword ? strength : translate(`noPassword`, translations)}
       </span>
       <div className="checkbox-group">
         <Checkbox
-          label="Include lowercase letters"
+          label={translate(`includeLowerCase`, translations)}
           onChange={(e) =>
             handleCheckboxChange("isLowerCase", e.target.checked)
           }
         />
         <Checkbox
-          label="Include uppercase letters"
+          label={translate(`includeUpperCase`, translations)}
           onChange={(e) =>
             handleCheckboxChange("isUpperCase", e.target.checked)
           }
         />
         <Checkbox
-          label="Include numbers"
+          label={translate(`includeNumbers`, translations)}
           onChange={(e) => handleCheckboxChange("hasNumber", e.target.checked)}
         />
         <Checkbox
-          label="Include symbols"
+          label={translate(`includeSymbols`, translations)}
           onChange={(e) => handleCheckboxChange("hasSymbol", e.target.checked)}
         />
       </div>

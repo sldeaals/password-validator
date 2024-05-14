@@ -1,4 +1,4 @@
-import { CRITERION, CRITERIA } from "../types";
+import { CRITERION, CRITERIA, Language } from "../types";
 
 export const MIN_LEN = 8;
 export const MAX_LEN = 24;
@@ -33,4 +33,12 @@ export const DEFAULT_RULES = {
   [CRITERIA.IS_UPPER_CASE]: true,
   [CRITERIA.HAS_NUMBERS]: true,
   [CRITERIA.HAS_SYMBOLS]: true,
+};
+
+export const languages: { [key in Language]: string } = {
+  en: "English",
+  zh: "Mandarin Chinese",
+  es: "Spanish",
+  hi: "Hindi",
+  ar: "Arabic",
 };
