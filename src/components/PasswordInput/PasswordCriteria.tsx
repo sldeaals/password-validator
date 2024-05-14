@@ -1,9 +1,10 @@
 import React from "react";
 import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
-import { RULES_MESSAGES } from "../../utils/constants";
 import { PasswordRules, CRITERION } from "../../types";
 import { calculateStrength } from "../../utils";
 import { DEFAULT_RULES } from "../../utils/constants";
+import useLanguage from "../../hooks/useLanguage";
+import { translations } from "../../translations";
 import "./styles.scss";
 
 interface PasswordCriteriaProps {
@@ -15,6 +16,7 @@ const PasswordCriteria: React.FC<PasswordCriteriaProps> = ({
   password,
   rules = DEFAULT_RULES,
 }) => {
+  const { translate } = useLanguage();
   const passwordObj = calculateStrength(password, rules);
 
   const renderCriteriaChecklist = () =>
@@ -22,19 +24,19 @@ const PasswordCriteria: React.FC<PasswordCriteriaProps> = ({
       let criteria;
       switch (criterion) {
         case CRITERION.MIN_LENGTH:
-          criteria = RULES_MESSAGES.minLength;
+          criteria = translate(`minLength`, translations);
           break;
         case CRITERION.LOWER_CASE:
-          criteria = RULES_MESSAGES.lowerCase;
+          criteria = translate(`lowerCase`, translations);
           break;
         case CRITERION.UPPER_CASE:
-          criteria = RULES_MESSAGES.upperCase;
+          criteria = translate(`upperCase`, translations);
           break;
         case CRITERION.NUMBERS:
-          criteria = RULES_MESSAGES.numbers;
+          criteria = translate(`numbers`, translations);
           break;
         case CRITERION.SYMBOLS:
-          criteria = RULES_MESSAGES.symbols;
+          criteria = translate(`symbols`, translations);
           break;
         default:
           criteria = "";
